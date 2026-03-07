@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Thyroid Care Juice",
+    "slug": "thyroid-care-juice",
+    "category": "THYROID WELLNESS",
+    "description": "Supports healthy thyroid function and normalises TSH levels.",
+    "benefits": ["Normalises hormone levels", "Combats fatigue", "Reduces hair thinning"],
+    "ingredients": ["Kanchanar", "Brahmi", "Ashwagandha", "Punarnava"],
+    "dosage": "30 ml twice daily on empty stomach",
+    "volume": ["500ml", "1000ml"],
+    "price": { "ml500": 499, "ml1000": 899 },
+    "image": "/thyroid.jpg"
+  },
+  {
+    "name": "Diabo Care Juice",
+    "slug": "diabo-care-juice",
+    "category": "DIABETIC WELLNESS",
+    "description": "Formulated for healthy blood sugar management.",
+    "benefits": ["Regulates glucose levels", "Improves insulin sensitivity"],
+    "ingredients": ["Karela", "Jamun", "Gudmar", "Vijaysar"],
+    "dosage": "30 ml twice daily before meals",
+    "volume": ["500ml", "1000ml"],
+    "price": { "ml500": 450, "ml1000": 799 },
+    "image": "/diabo.jpg"
+  },
+  {
+    "name": "She Care Juice",
+    "slug": "she-care-juice",
+    "category": "WOMEN'S WELLNESS",
+    "description": "Balances female hormones naturally.",
+    "benefits": ["Regulates menstrual cycle", "Reduces hormonal imbalances"],
+    "ingredients": ["Shatavari", "Ashoka", "Lodhra"],
+    "dosage": "30 ml twice daily",
+    "volume": ["500ml", "1000ml"],
+    "price": { "ml500": 550, "ml1000": 950 },
+    "image": "/she-care.jpg"
+  },
+  {
+    "name": "Digestive Care Juice",
+    "slug": "digestive-care-juice",
+    "category": "DIGESTIVE WELLNESS",
+    "description": "Relieves bloating and improves digestion.",
+    "benefits": ["Relieves acidity", "Improves gut health"],
+    "ingredients": ["Amla", "Ginger", "Ajwain"],
+    "dosage": "30 ml after meals",
+    "volume": ["500ml", "1000ml"],
+    "price": { "ml500": 399, "ml1000": 699 },
+    "image": "/digestive.jpg"
+  },
+  {
+    "name": "Aloe Vera Juice",
+    "slug": "aloe-vera-juice",
+    "category": "DAILY WELLNESS",
+    "description": "Deeply detoxifies and purifies the body.",
+    "benefits": ["Boosts immunity", "Improves skin hydration"],
+    "ingredients": ["Aloe Vera Pulp"],
+    "dosage": "30 ml twice daily diluted with water",
+    "volume": ["500ml", "1000ml"],
+    "price": { "ml500": 350, "ml1000": 599 },
+    "image": "/aloe.jpg"
+  },
+  {
+    "name": "Cholesterol Care Juice",
+    "slug": "cholesterol-care-juice",
+    "category": "CARDIAC WELLNESS",
+    "description": "Naturally rebalances cholesterol levels.",
+    "benefits": ["Reduces LDL cholesterol", "Promotes blood circulation"],
+    "ingredients": ["Ginger", "Lemon", "Honey", "ACV", "Lahsun", "Arjuna"],
+    "dosage": "30 ml twice daily before meals",
+    "volume": ["500ml", "1000ml"],
+    "price": { "ml500": 599, "ml1000": 1050 },
+    "image": "/cholesterol.jpg"
+  },
+  {
+    "name": "Sea Buckthorn Juice",
+    "slug": "sea-buckthorn-juice",
+    "category": "IMMUNITY & VITALITY",
+    "description": "Nutrient-dense elixir for total-body rejuvenation.",
+    "benefits": ["Rich in Vitamin C", "Strengthens immunity"],
+    "ingredients": ["Sea Buckthorn Berry"],
+    "dosage": "30 ml twice daily diluted with water",
+    "volume": ["500ml", "580ml"],
+    "price": { "ml500": 899, "ml1000": 1500 },
+    "image": "/seabuck.jpg"
+  },
+  {
+    "name": "Skin & Pimple Care",
+    "slug": "skin-pimple-care",
+    "category": "SKIN WELLNESS",
+    "description": "Purifies blood to eliminate root cause of acne.",
+    "benefits": ["Reduces acne", "Fades dark spots"],
+    "ingredients": ["Neem", "Giloy", "Manjistha", "Anant Mool"],
+    "dosage": "30 ml twice daily on empty stomach",
+    "volume": ["500ml", "1000ml"],
+    "price": { "ml500": 450, "ml1000": 799 },
+    "image": "/skin.jpg"
+  }
+]
