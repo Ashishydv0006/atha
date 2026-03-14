@@ -1,25 +1,26 @@
 import "./globals.css"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
+import { Manrope, Playfair_Display } from "next/font/google"
 
-export default function RootLayout({children}:{children:React.ReactNode}){
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-sans"
+})
 
-return(
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-display"
+})
 
-<html>
-
-<body>
-
-<Navbar/>
-
-{children}
-
-<Footer/>
-
-</body>
-
-</html>
-
-)
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${manrope.variable} ${playfair.variable}`}>
+      <body>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
+    </html>
+  )
 }

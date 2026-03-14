@@ -2,7 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-background:#f9fafb;
-font-family:sans-serif;
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f7f7f2;
+  color: #0f172a;
+  font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display), var(--font-sans), serif;
 }

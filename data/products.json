@@ -9,7 +9,7 @@
     "dosage": "30 ml twice daily on empty stomach",
     "volume": ["500ml", "1000ml"],
     "price": { "ml500": 499, "ml1000": 899 },
-    "image": "/thyroid.jpg"
+    "image": "/images/products/thyroid.jpg"
   },
   {
     "name": "Diabo Care Juice",
@@ -21,7 +21,7 @@
     "dosage": "30 ml twice daily before meals",
     "volume": ["500ml", "1000ml"],
     "price": { "ml500": 450, "ml1000": 799 },
-    "image": "/diabo.jpg"
+    "image": "/images/products/diabo.jpg"
   },
   {
     "name": "She Care Juice",
@@ -33,7 +33,7 @@
     "dosage": "30 ml twice daily",
     "volume": ["500ml", "1000ml"],
     "price": { "ml500": 550, "ml1000": 950 },
-    "image": "/she-care.jpg"
+    "image": "/images/products/she-care.png"
   },
   {
     "name": "Digestive Care Juice",
@@ -45,7 +45,7 @@
     "dosage": "30 ml after meals",
     "volume": ["500ml", "1000ml"],
     "price": { "ml500": 399, "ml1000": 699 },
-    "image": "/digestive.jpg"
+    "image": "/images/products/digestive.jpg"
   },
   {
     "name": "Aloe Vera Juice",
@@ -57,7 +57,7 @@
     "dosage": "30 ml twice daily diluted with water",
     "volume": ["500ml", "1000ml"],
     "price": { "ml500": 350, "ml1000": 599 },
-    "image": "/aloe.jpg"
+    "image": "/images/products/aloe.jpg"
   },
   {
     "name": "Cholesterol Care Juice",
@@ -69,7 +69,7 @@
     "dosage": "30 ml twice daily before meals",
     "volume": ["500ml", "1000ml"],
     "price": { "ml500": 599, "ml1000": 1050 },
-    "image": "/cholesterol.jpg"
+    "image": "/images/products/cholesterol.jpg"
   },
   {
     "name": "Sea Buckthorn Juice",
@@ -81,7 +81,7 @@
     "dosage": "30 ml twice daily diluted with water",
     "volume": ["500ml", "580ml"],
     "price": { "ml500": 899, "ml1000": 1500 },
-    "image": "/seabuck.jpg"
+    "image": "/images/products/sea-buckthorn.jpg"
   },
   {
     "name": "Skin & Pimple Care",
@@ -93,6 +93,6 @@
     "dosage": "30 ml twice daily on empty stomach",
     "volume": ["500ml", "1000ml"],
     "price": { "ml500": 450, "ml1000": 799 },
-    "image": "/skin.jpg"
+    "image": "/images/products/skin.jpg"
   }
 ]

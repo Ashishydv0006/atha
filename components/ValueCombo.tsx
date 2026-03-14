@@ -30,27 +30,35 @@ volume:"500ml each"
 
 return(
 
-<section className="py-16 bg-green-100">
+<section className="py-16 bg-gradient-to-b from-emerald-50 via-white to-emerald-50">
 
-<h2 className="text-3xl font-bold text-center text-green-800 mb-10">
+<div className="max-w-6xl mx-auto px-4">
+<h2 className="text-3xl font-bold text-center text-emerald-800 mb-3">
 Value Combo Packs
 </h2>
 
-<div className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto px-4">
+<p className="text-center text-sm text-slate-600 mb-10">
+Curated pairings for complete, targeted wellness.
+</p>
+
+<div className="grid md:grid-cols-4 gap-6">
 
 {combos.map((combo,i)=>(
 
-<div key={i} className="bg-white p-6 rounded-xl shadow">
+<div
+key={i}
+className="rounded-2xl border border-emerald-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+>
 
-<h3 className="font-semibold text-lg">
+<h3 className="font-semibold text-lg text-slate-900">
 {combo.name}
 </h3>
 
-<p className="text-gray-600 mt-2">
+<p className="text-slate-600 mt-2 text-sm">
 {combo.products}
 </p>
 
-<p className="text-green-700 text-sm mt-2">
+<p className="text-emerald-700 text-xs mt-4 font-semibold tracking-widest">
 {combo.volume}
 </p>
 
@@ -58,6 +66,7 @@ Value Combo Packs
 
 ))}
 
+</div>
 </div>
 
 </section>

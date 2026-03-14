@@ -2,17 +2,17 @@ export default function Footer(){
 
 return(
 
-<footer className="bg-green-900 text-white py-10 mt-20">
+<footer className="bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-950 text-white py-12 mt-20">
 
 <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 px-4">
 
 <div>
 
-<h2 className="text-xl font-semibold mb-2">
+<h2 className="text-xl font-semibold mb-2 tracking-widest uppercase">
 Atha
 </h2>
 
-<p className="text-sm">
+<p className="text-sm text-emerald-100">
 Authentic Ayurveda wellness juices made from
 100% fresh botanical ingredients.
 </p>
@@ -25,7 +25,7 @@ Authentic Ayurveda wellness juices made from
 Quick Links
 </h3>
 
-<ul className="text-sm space-y-1">
+<ul className="text-sm space-y-1 text-emerald-100">
 <li>Home</li>
 <li>Products</li>
 <li>About</li>
@@ -39,7 +39,7 @@ Quick Links
 Trust
 </h3>
 
-<ul className="text-sm space-y-1">
+<ul className="text-sm space-y-1 text-emerald-100">
 <li>GMP Certified</li>
 <li>ISO Certified</li>
 <li>No Added Sugar</li>
@@ -50,8 +50,8 @@ Trust
 
 </div>
 
-<p className="text-center text-sm mt-8">
-© {new Date().getFullYear()} Atha. All rights reserved.
+<p className="text-center text-sm mt-8 text-emerald-100">
+(c) {new Date().getFullYear()} Atha. All rights reserved.
 </p>
 
 </footer>
