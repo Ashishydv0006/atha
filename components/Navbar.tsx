@@ -6,7 +6,9 @@ import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 
 export default function Navbar() {
-  const cart = useCartStore((state) => state.cart)
+  const totalItems = useCartStore((state) =>
+    state.cart.reduce((sum, item) => sum + item.quantity, 0)
+  )
   const [isVisible, setIsVisible] = useState(true)
   const lastScrollY = useRef(0)
   const ticking = useRef(false)
@@ -45,7 +47,10 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-3">
+        <Link
+          href="/"
+          className="flex items-center gap-3 rounded-full bg-white/90 px-3 py-1.5 shadow-sm backdrop-blur"
+        >
           <Image
             src="/images/logo.png"
             alt="Atha Ayurveda Logo"
@@ -84,8 +89,18 @@ export default function Navbar() {
             href="/cart"
             className="flex items-center gap-2 rounded-full border border-emerald-900/20 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-4 py-2 text-white shadow-md shadow-emerald-900/25 transition hover:brightness-110"
           >
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/15">
+              <svg
+                viewBox="0 0 24 24"
+                className="h-3.5 w-3.5 text-white"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M7 4h-2l-1 2h2l3 9h9l2-6h-10l-1-3zm2 14a1.5 1.5 0 1 0 .001 3.001A1.5 1.5 0 0 0 9 18zm8 0a1.5 1.5 0 1 0 .001 3.001A1.5 1.5 0 0 0 17 18z" />
+              </svg>
+            </span>
             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[10px] font-semibold text-white">
-              {cart.length}
+              {totalItems}
             </span>
             <span>Cart</span>
           </Link>
@@ -96,8 +111,18 @@ export default function Navbar() {
             href="/cart"
             className="flex items-center gap-2 rounded-full border border-emerald-900/20 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-emerald-900/25 transition hover:brightness-110"
           >
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/15">
+              <svg
+                viewBox="0 0 24 24"
+                className="h-3.5 w-3.5 text-white"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M7 4h-2l-1 2h2l3 9h9l2-6h-10l-1-3zm2 14a1.5 1.5 0 1 0 .001 3.001A1.5 1.5 0 0 0 9 18zm8 0a1.5 1.5 0 1 0 .001 3.001A1.5 1.5 0 0 0 17 18z" />
+              </svg>
+            </span>
             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[10px] font-semibold text-white">
-              {cart.length}
+              {totalItems}
             </span>
             <span>Cart</span>
           </Link>

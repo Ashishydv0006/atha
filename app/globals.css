@@ -19,3 +19,39 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-display), var(--font-sans), serif;
 }
+
+.cart-box-base {
+  position: absolute;
+  left: 10px;
+  bottom: 4px;
+  height: 28px;
+  width: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #0f766e, #059669);
+  box-shadow: 0 12px 24px -12px rgba(15, 23, 42, 0.5);
+}
+
+.cart-box-lid {
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  height: 12px;
+  width: 40px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #134e4a, #0f766e);
+  transform-origin: left center;
+  animation: cart-lid 2.4s ease-in-out infinite;
+  box-shadow: 0 8px 18px -10px rgba(15, 23, 42, 0.6);
+}
+
+@keyframes cart-lid {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  40% {
+    transform: rotate(-22deg) translateY(-2px);
+  }
+  70% {
+    transform: rotate(0deg) translateY(0);
+  }
+}

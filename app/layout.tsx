@@ -3,6 +3,15 @@ import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import { Manrope, Playfair_Display } from "next/font/google"
 import ScrollToTop from "@/components/ScrollToTop"
+import CartBar from "@/components/CartBar"
+
+export const metadata = {
+  icons: {
+    icon: "/images/logo.png",
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png"
+  }
+}
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -20,10 +29,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Navbar />
         <ScrollToTop />
-        <div className="pt-20">
+        <div className="pt-20 pb-24">
           {children}
           <Footer />
         </div>
+        <CartBar />
       </body>
     </html>
   )

@@ -11,8 +11,6 @@ export default function Home() {
   return (
     <main>
       <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),_transparent_55%)]">
-        <div className="absolute -left-32 top-16 h-72 w-72 rounded-full bg-emerald-200/60 blur-3xl" />
-        <div className="absolute -right-28 top-8 h-80 w-80 rounded-full bg-teal-300/45 blur-3xl" />
 
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 lg:grid-cols-2">
           <div>
