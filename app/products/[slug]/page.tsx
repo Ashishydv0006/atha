@@ -3,32 +3,30 @@ import { notFound } from "next/navigation"
 import AddToCartButton from "@/components/AddToCartButton"
 import Image from "next/image"
 import ProductCard from "@/components/ProductCard"
+import { getProductSlug, normalizeSlug } from "@/lib/product-utils"
 
 export function generateStaticParams() {
   return products.map((product: any) => ({
-    slug: product.slug ?? product.name.toLowerCase().replace(/\s+/g, "-")
+    slug: getProductSlug(product)
   }))
 }
 
 export const dynamicParams = true
 
-export default function ProductPage({
-params
+export default async function ProductPage({
+  params
 }:{
-params:{slug:string}
+  params: Promise<{ slug: string }>
 }){
 
-const requestedSlug = decodeURIComponent(params.slug).toLowerCase()
+const { slug } = await params
+const requestedSlug = normalizeSlug(slug)
 
-const product = products.find((p:any)=>{
-  const slug = (p.slug ?? p.name.toLowerCase().replace(/\s+/g,"-")).toLowerCase()
-  return slug === requestedSlug
-})
+const product = products.find((p:any)=> getProductSlug(p) === requestedSlug)
 
 if(!product) return notFound()
 
-const currentSlug =
-  product.slug ?? product.name.toLowerCase().replace(/\s+/g, "-")
+const currentSlug = getProductSlug(product)
 
 const moreProducts = products
   .filter((p:any)=>{
@@ -39,11 +37,13 @@ const moreProducts = products
 
 return(
 
-<main className="bg-[#f1f1e9]">
-  <section className="bg-gradient-to-b from-emerald-200/70 via-white to-white">
-    <div className="max-w-6xl mx-auto px-4 py-12">
-      <div className="grid gap-10 lg:grid-cols-2">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-emerald-200 bg-emerald-100 shadow-xl">
+<main className="bg-[#f5f6f0]">
+  <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),_transparent_55%)]">
+    <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-emerald-200/70 blur-3xl" />
+    <div className="absolute -right-24 top-16 h-72 w-72 rounded-full bg-teal-300/50 blur-3xl" />
+    <div className="max-w-6xl mx-auto px-4 py-16">
+      <div className="grid gap-12 lg:grid-cols-2">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-[32px] border border-emerald-200/80 bg-gradient-to-br from-emerald-100 via-white to-emerald-50 shadow-[0_30px_60px_-40px_rgba(15,23,42,0.7)]">
           <Image
             src={product.image || "/images/logo.png"}
             alt={product.name}
@@ -71,7 +71,7 @@ return(
             {product.certifications?.map((c:string,i:number)=>(
               <span
                 key={i}
-                className="rounded-full border border-emerald-200 bg-white px-3 py-1 text-xs font-semibold text-emerald-800"
+                className="rounded-full border border-emerald-200/70 bg-white/80 px-3 py-1 text-xs font-semibold text-emerald-800 shadow-sm backdrop-blur"
               >
                 {c}
               </span>
@@ -79,7 +79,7 @@ return(
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
-            <div>
+            <div className="rounded-2xl border border-emerald-200/70 bg-white/80 px-4 py-3 shadow-sm backdrop-blur">
               <p className="text-xs uppercase tracking-widest text-slate-600">
                 Starting at
               </p>
@@ -91,7 +91,7 @@ return(
           </div>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-emerald-100 bg-white p-4 text-sm">
+            <div className="rounded-2xl border border-emerald-100/80 bg-white/90 p-4 text-sm shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">
                 Dosage
               </p>
@@ -99,12 +99,34 @@ return(
                 {product.dosage}
               </p>
             </div>
-            <div className="rounded-2xl border border-emerald-100 bg-white p-4 text-sm">
+            <div className="rounded-2xl border border-emerald-100/80 bg-white/90 p-4 text-sm shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">
                 Available Volume
               </p>
               <p className="mt-2 text-slate-700">
                 {product.volume?.join(", ")}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-3xl border border-emerald-100/80 bg-white/95 p-5 text-sm shadow-[0_12px_30px_-24px_rgba(15,23,42,0.7)]">
+              <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">
+                Use Of
+              </p>
+              <p className="mt-3 text-slate-700">
+                Designed for {product.category.toLowerCase()} support. {product.description}
+              </p>
+            </div>
+            <div className="rounded-3xl border border-emerald-100/80 bg-white/95 p-5 text-sm shadow-[0_12px_30px_-24px_rgba(15,23,42,0.7)]">
+              <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">
+                How To Use
+              </p>
+              <p className="mt-3 text-slate-700">
+                {product.dosage}
+              </p>
+              <p className="mt-2 text-xs uppercase tracking-widest text-emerald-700">
+                Best with water
               </p>
             </div>
           </div>
@@ -137,15 +159,20 @@ return(
     </div>
   </section>
 
-  <section className="py-14 bg-gradient-to-b from-white via-emerald-100/60 to-white">
+  <section className="py-16 bg-gradient-to-b from-white via-emerald-100/60 to-white">
     <div className="max-w-6xl mx-auto px-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-emerald-900">
-          More Products
-        </h2>
-        <p className="text-xs uppercase tracking-widest text-emerald-800">
-          Explore the range
+      <div className="flex flex-col gap-2">
+        <p className="text-xs font-semibold tracking-[0.35em] text-emerald-700">
+          KEEP EXPLORING
         </p>
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-semibold text-emerald-900">
+            More Products
+          </h2>
+          <p className="text-xs uppercase tracking-widest text-emerald-800">
+            Explore the range
+          </p>
+        </div>
       </div>
 
       <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">

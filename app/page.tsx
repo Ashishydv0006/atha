@@ -3,16 +3,18 @@ import ProductCard from "@/components/ProductCard";
 import ValueCombo from "@/components/ValueCombo";
 import Image from "next/image";
 import Link from "next/link";
+import { getProductSlug } from "@/lib/product-utils";
 
 export default function Home() {
   const featured = products[0]
 
   return (
     <main>
-      <section className="relative overflow-hidden bg-gradient-to-b from-emerald-300/70 via-emerald-100 to-white">
-        <div className="absolute -right-20 top-32 h-72 w-72 rounded-full bg-teal-300/70 blur-3xl" />
+      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),_transparent_55%)]">
+        <div className="absolute -left-32 top-16 h-72 w-72 rounded-full bg-emerald-200/60 blur-3xl" />
+        <div className="absolute -right-28 top-8 h-80 w-80 rounded-full bg-teal-300/45 blur-3xl" />
 
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 lg:grid-cols-2">
           <div>
             <p className="text-xs font-semibold tracking-[0.35em] text-emerald-800">
               ATHA AYURVEDA
@@ -28,34 +30,41 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="#products"
-                className="rounded-full bg-gradient-to-r from-emerald-950 to-emerald-700 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-900/30 transition hover:-translate-y-0.5"
+                className="rounded-full bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-900/30 transition hover:-translate-y-0.5"
               >
                 Shop Now
               </Link>
               <Link
-                href={`/products/${featured.slug}`}
-                className="rounded-full border border-emerald-900/40 bg-white px-6 py-3 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-100"
+                href={`/products/${encodeURIComponent(getProductSlug(featured))}`}
+                className="rounded-full border border-emerald-900/20 bg-white/80 px-6 py-3 text-sm font-semibold text-emerald-900 shadow-sm backdrop-blur transition hover:bg-emerald-50"
               >
                 Explore Best Seller
               </Link>
             </div>
 
-            <div className="mt-10 grid grid-cols-2 gap-4 text-sm text-slate-700 sm:grid-cols-4">
-              {["Fresh Herbs", "GMP Certified", "Clinically Backed", "No Added Sugar"].map(
-                (label) => (
-                  <div
-                    key={label}
-                    className="rounded-2xl border border-emerald-200 bg-white/80 px-4 py-3"
-                  >
-                    {label}
-                  </div>
-                )
-              )}
+            <div className="mt-10 grid max-w-xl grid-cols-3 gap-4 text-sm text-slate-600">
+              {[
+                { label: "Fresh Herbs", value: "100%" },
+                { label: "Quality Standard", value: "GMP" },
+                { label: "Additives", value: "Zero" }
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-2xl border border-emerald-200/60 bg-white/70 p-4 text-center shadow-sm backdrop-blur"
+                >
+                  <p className="text-lg font-semibold text-emerald-900">
+                    {item.value}
+                  </p>
+                  <p className="mt-1 text-xs uppercase tracking-widest">
+                    {item.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
           <div className="relative">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-emerald-200 bg-emerald-100 shadow-xl">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[32px] border border-emerald-200/80 bg-gradient-to-br from-emerald-100 via-white to-emerald-50 shadow-[0_30px_60px_-40px_rgba(15,23,42,0.7)]">
               <Image
                 src={featured.image || "/images/logo.png"}
                 alt={featured.name}
@@ -65,21 +74,43 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/30 via-transparent to-transparent" />
             </div>
-            <div className="absolute -bottom-6 -left-6 rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-sm text-emerald-900 shadow-lg">
-              Featured: {featured.name}
-            </div>
           </div>
         </div>
       </section>
-
-      <section className="py-16 bg-gradient-to-b from-white via-emerald-100/60 to-white">
+<section id="products" className="py-20 bg-gradient-to-b from-emerald-100/70 via-emerald-50 to-white">
         <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-3xl font-semibold text-emerald-900">
+          <div className="flex flex-col gap-3">
+            <p className="text-xs font-semibold tracking-[0.35em] text-emerald-700">
+              SIGNATURE RANGE
+            </p>
+            <h2 className="text-3xl font-semibold text-emerald-900">
+              Our Herbal Wellness Range
+            </h2>
+            <p className="mt-1 text-sm text-slate-700">
+              Eight targeted blends designed for specific wellness goals.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {products.map((product, index) => (
+              <ProductCard key={index} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      <ValueCombo />
+      <section id="why-atha" className="py-20 bg-gradient-to-b from-white via-emerald-100/60 to-white">
+        <div className="mx-auto max-w-6xl px-4">
+          <p className="text-xs font-semibold tracking-[0.35em] text-emerald-700">
+            TRUSTED PROCESS
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold text-emerald-900">
             Why Choose Atha
           </h2>
           <p className="mt-3 max-w-2xl text-sm text-slate-700">
-            We blend authentic Ayurveda with modern, premium formulation standards
-            so you can feel the difference from the first sip.
+            A quick preview of what makes Atha different — from fresh botanicals
+            to clean formulations and real wellness results.
           </p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-4">
@@ -103,7 +134,7 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl border border-emerald-200 bg-white p-6 shadow-sm"
+                className="rounded-3xl border border-emerald-200/70 bg-white/90 p-6 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.7)]"
               >
                 <h3 className="text-lg font-semibold text-emerald-950">
                   {item.title}
@@ -112,31 +143,20 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      <section id="products" className="py-16 bg-gradient-to-b from-emerald-200/70 via-emerald-100 to-white">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="flex items-end justify-between gap-6">
-            <div>
-              <h2 className="text-3xl font-semibold text-emerald-900">
-                Our Herbal Wellness Range
-              </h2>
-              <p className="mt-2 text-sm text-slate-700">
-                Eight targeted blends designed for specific wellness goals.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
-            ))}
+          <div className="mt-10">
+            <Link
+              href="/why-atha"
+              className="inline-flex items-center justify-center rounded-full border border-emerald-900/20 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-900/30 transition hover:-translate-y-0.5"
+            >
+              Read the Full Why Atha Story
+            </Link>
           </div>
         </div>
       </section>
 
-      <ValueCombo />
+      
+
     </main>
   )
 }
