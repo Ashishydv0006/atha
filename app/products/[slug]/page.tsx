@@ -68,7 +68,7 @@ return(
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2">
-            {product.certifications?.map((c:string,i:number)=>(
+            {(product as any).certifications?.map((c:string,i:number)=>(
               <span
                 key={i}
                 className="rounded-full border border-emerald-200/70 bg-white/80 px-3 py-1 text-xs font-semibold text-emerald-800 shadow-sm backdrop-blur"
