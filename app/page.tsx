@@ -1,12 +1,17 @@
-import products from "@/data/products.json";
-import ProductCard from "@/components/ProductCard";
-import ValueCombo from "@/components/ValueCombo";
-import Image from "next/image";
-import Link from "next/link";
-import { getProductSlug } from "@/lib/product-utils";
+import products from "@/data/products.json"
+import powders from "@/data/powders.json"
+import ProductCard from "@/components/ProductCard"
+import PowderCard from "@/components/PowderCard"
+import ValueCombo from "@/components/ValueCombo"
+import PowderCombo from "@/components/PowderCombo"
+import Image from "next/image"
+import Link from "next/link"
+import { getProductSlug } from "@/lib/product-utils"
 
 export default function Home() {
   const featured = products[0]
+  const featuredJuices = products.slice(0, 4)
+  const featuredPowders = powders.slice(0, 4)
 
   return (
     <main>
@@ -75,7 +80,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-<section id="products" className="py-20 bg-gradient-to-b from-emerald-100/70 via-emerald-50 to-white">
+      <section
+        id="products"
+        className="py-20 bg-gradient-to-b from-emerald-100/70 via-emerald-50 to-white"
+      >
         <div className="mx-auto max-w-6xl px-4">
           <div className="flex flex-col gap-3">
             <p className="text-xs font-semibold tracking-[0.35em] text-emerald-700">
@@ -90,14 +98,55 @@ export default function Home() {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {products.map((product, index) => (
+            {featuredJuices.map((product, index) => (
               <ProductCard key={index} product={product} />
             ))}
+          </div>
+
+          <div className="mt-10 flex">
+            <Link
+              href="/juices"
+              className="inline-flex items-center justify-center rounded-full border border-emerald-900/20 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white shadow-lg shadow-emerald-900/25 transition hover:-translate-y-0.5"
+            >
+              View All Juice Products
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gradient-to-b from-white via-emerald-50/50 to-white">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="flex flex-col gap-3">
+            <p className="text-xs font-semibold tracking-[0.35em] text-emerald-700">
+              POWDER COLLECTION
+            </p>
+            <h2 className="text-3xl font-semibold text-emerald-900">
+              Herbal Beauty Powders
+            </h2>
+            <p className="mt-1 text-sm text-slate-700">
+              Botanical powders crafted for skin, hair, and wellness rituals.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {featuredPowders.map((product, index) => (
+              <PowderCard key={index} product={product} />
+            ))}
+          </div>
+
+          <div className="mt-10 flex">
+            <Link
+              href="/powders"
+              className="inline-flex items-center justify-center rounded-full border border-emerald-900/20 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white shadow-lg shadow-emerald-900/25 transition hover:-translate-y-0.5"
+            >
+              View All Powder Products
+            </Link>
           </div>
         </div>
       </section>
       
       <ValueCombo />
+      <PowderCombo />
       <section id="why-atha" className="py-20 bg-gradient-to-b from-white via-emerald-100/60 to-white">
         <div className="mx-auto max-w-6xl px-4">
           <p className="text-xs font-semibold tracking-[0.35em] text-emerald-700">
