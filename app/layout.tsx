@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Navbar />
         <ScrollToTop />
-        <div className="pt-20 pb-24">
+        <div className="pt-20">
           {children}
           <Footer />
         </div>

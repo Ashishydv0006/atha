@@ -33,7 +33,7 @@
     "dosage": "30 ml twice daily",
     "volume": ["500ml", "1000ml"],
     "price": { "ml500": 550, "ml1000": 950 },
-    "image": "/images/products/she-care.png"
+    "image": "/images/products/she-care.jpg"
   },
   {
     "name": "Digestive Care Juice",

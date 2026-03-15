@@ -40,7 +40,7 @@ export default function ValueCombo() {
       products: "She Care + Thyroid Care",
       volume: "1000ml each",
       images: [
-        "/images/products/she-care.png",
+        "/images/products/she-care.jpg",
         "/images/products/thyroid.jpg"
       ],
       slugs: ["she-care-juice", "thyroid-care-juice"]

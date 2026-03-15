@@ -10,6 +10,8 @@ export default function Navbar() {
     state.cart.reduce((sum, item) => sum + item.quantity, 0)
   )
   const [isVisible, setIsVisible] = useState(true)
+  const [isProductsOpen, setIsProductsOpen] = useState(false)
+  const productsCloseTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
   const lastScrollY = useRef(0)
   const ticking = useRef(false)
 
@@ -66,12 +68,53 @@ export default function Navbar() {
           >
             Home
           </Link>
-          <Link
-            href="/#products"
-            className="rounded-full px-4 py-2 transition hover:bg-emerald-50"
+          <div
+            className="relative"
+            onPointerEnter={() => {
+              if (productsCloseTimeout.current) {
+                clearTimeout(productsCloseTimeout.current)
+                productsCloseTimeout.current = null
+              }
+              setIsProductsOpen(true)
+            }}
+            onPointerLeave={() => {
+              productsCloseTimeout.current = setTimeout(
+                () => setIsProductsOpen(false),
+                120
+              )
+            }}
           >
-            Products
-          </Link>
+            <Link
+              href="/#products"
+              className="flex items-center gap-2 rounded-full px-4 py-2 transition hover:bg-emerald-50"
+              onFocus={() => setIsProductsOpen(true)}
+              onBlur={() => setIsProductsOpen(false)}
+            >
+              Products
+              <span className="text-xs text-emerald-700">v</span>
+            </Link>
+            <div className="absolute left-0 top-full h-2 w-40" />
+            <div
+              className={`absolute left-0 top-full mt-2 w-48 rounded-2xl border border-emerald-100/80 bg-white/95 p-2 text-sm shadow-[0_18px_40px_-28px_rgba(15,23,42,0.6)] transition ${
+                isProductsOpen
+                  ? "pointer-events-auto opacity-100"
+                  : "pointer-events-none opacity-0"
+              }`}
+            >
+              <Link
+                href="/juices"
+                className="block rounded-xl px-3 py-2 font-semibold text-emerald-900 transition hover:bg-emerald-50"
+              >
+                Juices
+              </Link>
+              <Link
+                href="/powders"
+                className="block rounded-xl px-3 py-2 font-semibold text-emerald-900 transition hover:bg-emerald-50"
+              >
+                Powders
+              </Link>
+            </div>
+          </div>
           <Link
             href="/#combos"
             className="rounded-full px-4 py-2 transition hover:bg-emerald-50"
