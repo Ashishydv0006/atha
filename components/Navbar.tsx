@@ -51,10 +51,10 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link
           href="/"
-          className="flex items-center gap-3 rounded-full bg-white/90 px-3 py-1.5 shadow-sm backdrop-blur"
+          
         >
           <Image
-            src="/images/logo.png"
+            src="/images/Atha-logo.png"
             alt="Atha Ayurveda Logo"
             width={120}
             height={58}

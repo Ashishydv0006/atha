@@ -4,6 +4,7 @@ import Footer from "@/components/Footer"
 import { Manrope, Playfair_Display } from "next/font/google"
 import ScrollToTop from "@/components/ScrollToTop"
 import CartBar from "@/components/CartBar"
+import AuthModal from "@/components/AuthModal"
 
 export const metadata = {
   icons: {
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${manrope.variable} ${playfair.variable}`}>
       <body>
+        <AuthModal />
         <Navbar />
         <ScrollToTop />
         <div className="pt-20">
