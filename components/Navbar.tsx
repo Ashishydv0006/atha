@@ -11,6 +11,7 @@ export default function Navbar() {
   )
   const [isVisible, setIsVisible] = useState(true)
   const [isProductsOpen, setIsProductsOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const productsCloseTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
   const lastScrollY = useRef(0)
   const ticking = useRef(false)
@@ -150,6 +151,13 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3 md:hidden">
+          <button
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-emerald-900/20 bg-white/80 text-emerald-900 shadow-sm transition hover:bg-emerald-50"
+          >
+            <span className="text-lg">{isMobileMenuOpen ? "×" : "≡"}</span>
+          </button>
           <Link
             href="/cart"
             className="flex items-center gap-2 rounded-full border border-emerald-900/20 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-emerald-900/25 transition hover:brightness-110"
@@ -171,6 +179,55 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
+
+      {isMobileMenuOpen && (
+        <div className="border-t border-emerald-900/10 bg-white/95 px-4 py-4 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.6)] md:hidden">
+          <div className="flex flex-col gap-2 text-sm font-semibold text-slate-800">
+            <Link
+              href="/"
+              className="rounded-2xl px-4 py-3 transition hover:bg-emerald-50"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
+            <div className="rounded-2xl border border-emerald-900/10 bg-emerald-50/60 px-4 py-3">
+              <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">
+                Products
+              </p>
+              <div className="mt-2 flex flex-col gap-2">
+                <Link
+                  href="/juices"
+                  className="rounded-xl px-3 py-2 text-emerald-900 transition hover:bg-white"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Juices
+                </Link>
+                <Link
+                  href="/powders"
+                  className="rounded-xl px-3 py-2 text-emerald-900 transition hover:bg-white"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Powders
+                </Link>
+              </div>
+            </div>
+            <Link
+              href="/#combos"
+              className="rounded-2xl px-4 py-3 transition hover:bg-emerald-50"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Combos
+            </Link>
+            <Link
+              href="/why-atha"
+              className="rounded-2xl px-4 py-3 transition hover:bg-emerald-50"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Why Atha
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }

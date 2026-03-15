@@ -28,18 +28,18 @@ export default function AuthModal() {
   }
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 px-4 backdrop-blur-sm">
-      <div className="relative w-full max-w-4xl overflow-hidden rounded-[36px] border border-emerald-900/10 bg-white shadow-[0_40px_120px_-60px_rgba(15,23,42,0.9)]">
+    <div className="fixed inset-0 z-[60] flex items-start justify-center bg-black/40 px-4 pt-24 backdrop-blur-sm sm:items-center sm:pt-0">
+      <div className="relative w-full max-w-[22rem] overflow-hidden rounded-[24px] border border-emerald-900/10 bg-white shadow-[0_40px_120px_-60px_rgba(15,23,42,0.9)] sm:max-w-2xl sm:rounded-[30px] lg:max-w-4xl lg:rounded-[36px]">
         <button
           onClick={() => setIsOpen(false)}
-          aria-label="Close"
-          className="absolute right-5 top-5 z-20 rounded-full border border-emerald-900/10 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-slate-600 transition hover:bg-emerald-50"
+          aria-label="Skip"
+          className="absolute right-4 top-4 z-20 rounded-full border border-emerald-900/10 bg-white/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-slate-600 transition hover:bg-emerald-50 sm:right-5 sm:top-5 sm:text-xs"
         >
-          Close
+          Skip
         </button>
 
         <div className="grid gap-0 lg:grid-cols-[1.1fr_1fr]">
-          <div className="relative min-h-[420px] bg-gradient-to-br from-emerald-50 via-white to-emerald-100 p-10">
+          <div className="relative min-h-[260px] bg-gradient-to-br from-emerald-50 via-white to-emerald-100 p-5 sm:min-h-[360px] sm:p-8 lg:min-h-[420px] lg:p-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),_transparent_60%)]" />
 
             <div className="relative z-10 flex h-full flex-col items-start justify-center">
@@ -64,7 +64,7 @@ export default function AuthModal() {
             </div>
           </div>
 
-          <div className="relative z-10 flex flex-col gap-6 p-8 sm:p-10">
+          <div className="relative z-10 flex flex-col gap-4 p-5 sm:gap-6 sm:p-8 lg:p-10">
             <div className="flex items-center gap-3 rounded-full border border-emerald-900/10 bg-emerald-50/70 p-1 text-xs font-semibold uppercase tracking-widest text-emerald-800">
               <button
                 onClick={() => setMode("signup")}
