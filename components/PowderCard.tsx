@@ -2,8 +2,9 @@ import AddToCartButton from "./AddToCartButton"
 import Link from "next/link"
 import Image from "next/image"
 import { getProductSlug } from "@/lib/product-utils"
+import type { CatalogItem } from "@/lib/product-utils"
 
-export default function PowderCard({ product }: { product: any }) {
+export default function PowderCard({ product }: { product: CatalogItem }) {
   const slug = getProductSlug(product)
 
   return (

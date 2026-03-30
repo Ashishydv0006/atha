@@ -1,12 +1,15 @@
-import products from "@/data/products.json"
+import productsData from "@/data/products.json"
 import { notFound } from "next/navigation"
 import AddToCartButton from "@/components/AddToCartButton"
 import Image from "next/image"
 import ProductCard from "@/components/ProductCard"
 import { getProductSlug, normalizeSlug } from "@/lib/product-utils"
+import type { CatalogItem } from "@/lib/product-utils"
+
+const products = productsData as CatalogItem[]
 
 export function generateStaticParams() {
-  return products.map((product: any) => ({
+  return products.map((product) => ({
     slug: getProductSlug(product)
   }))
 }
@@ -22,17 +25,14 @@ export default async function ProductPage({
 const { slug } = await params
 const requestedSlug = normalizeSlug(slug)
 
-const product = products.find((p:any)=> getProductSlug(p) === requestedSlug)
+const product = products.find((p) => getProductSlug(p) === requestedSlug)
 
 if(!product) return notFound()
 
 const currentSlug = getProductSlug(product)
 
 const moreProducts = products
-  .filter((p:any)=>{
-    const slug = p.slug ?? p.name.toLowerCase().replace(/\s+/g, "-")
-    return slug !== currentSlug
-  })
+  .filter((p) => getProductSlug(p) !== currentSlug)
   .slice(0,4)
 
 return(
@@ -68,7 +68,7 @@ return(
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2">
-            {(product as any).certifications?.map((c:string,i:number)=>(
+            {product.certifications?.map((c, i) => (
               <span
                 key={i}
                 className="rounded-full border border-emerald-200/70 bg-white/80 px-3 py-1 text-xs font-semibold text-emerald-800 shadow-sm backdrop-blur"
@@ -137,7 +137,7 @@ return(
                 Key Benefits
               </h3>
               <ul className="mt-3 list-disc space-y-2 pl-6 text-sm text-slate-700">
-                {product.benefits.map((b:string,i:number)=>(
+                {product.benefits.map((b, i) => (
                   <li key={i}>{b}</li>
                 ))}
               </ul>
@@ -148,7 +148,7 @@ return(
                 Ingredients
               </h3>
               <ul className="mt-3 list-disc space-y-2 pl-6 text-sm text-slate-700">
-                {product.ingredients.map((i:string,index:number)=>(
+                {product.ingredients.map((i, index) => (
                   <li key={index}>{i}</li>
                 ))}
               </ul>
@@ -176,7 +176,7 @@ return(
       </div>
 
       <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {moreProducts.map((item:any)=>(
+        {moreProducts.map((item) => (
           <ProductCard key={item.slug} product={item} />
         ))}
       </div>

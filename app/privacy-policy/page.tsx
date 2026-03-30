@@ -125,7 +125,7 @@ export default function PrivacyPolicyPage() {
 
           <div className="rounded-3xl border border-emerald-200/70 bg-white/90 p-8 shadow-[0_20px_50px_-32px_rgba(15,23,42,0.7)]">
             <h2 className="text-2xl font-semibold text-slate-900">
-              8. Children's Privacy
+              8. Children&apos;s Privacy
             </h2>
             <p className="mt-3 text-sm text-slate-700">
               Our website is not intended for children under 13. We do not

@@ -1,12 +1,15 @@
-import powders from "@/data/powders.json"
+import powdersData from "@/data/powders.json"
 import { notFound } from "next/navigation"
 import AddToCartButton from "@/components/AddToCartButton"
 import Image from "next/image"
 import PowderCard from "@/components/PowderCard"
 import { getProductSlug, normalizeSlug } from "@/lib/product-utils"
+import type { CatalogItem } from "@/lib/product-utils"
+
+const powders = powdersData as CatalogItem[]
 
 export function generateStaticParams() {
-  return powders.map((product: any) => ({
+  return powders.map((product) => ({
     slug: getProductSlug(product)
   }))
 }
@@ -21,14 +24,14 @@ export default async function PowderPage({
   const { slug } = await params
   const requestedSlug = normalizeSlug(slug)
 
-  const product = powders.find((p: any) => getProductSlug(p) === requestedSlug)
+  const product = powders.find((p) => getProductSlug(p) === requestedSlug)
 
   if (!product) return notFound()
 
   const currentSlug = getProductSlug(product)
 
   const moreProducts = powders
-    .filter((p: any) => getProductSlug(p) !== currentSlug)
+    .filter((p) => getProductSlug(p) !== currentSlug)
     .slice(0, 4)
 
   return (
@@ -116,7 +119,7 @@ export default async function PowderPage({
                     Key Benefits
                   </h3>
                   <ul className="mt-3 list-disc space-y-2 pl-6 text-sm text-slate-700">
-                    {product.benefits.map((b: string, i: number) => (
+                    {product.benefits.map((b, i) => (
                       <li key={i}>{b}</li>
                     ))}
                   </ul>
@@ -127,7 +130,7 @@ export default async function PowderPage({
                     Ingredients
                   </h3>
                   <ul className="mt-3 list-disc space-y-2 pl-6 text-sm text-slate-700">
-                    {product.ingredients.map((i: string, index: number) => (
+                    {product.ingredients.map((i, index) => (
                       <li key={index}>{i}</li>
                     ))}
                   </ul>
@@ -155,7 +158,7 @@ export default async function PowderPage({
           </div>
 
           <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {moreProducts.map((item: any) => (
+            {moreProducts.map((item) => (
               <PowderCard key={item.slug} product={item} />
             ))}
           </div>

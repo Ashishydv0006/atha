@@ -1,12 +1,14 @@
 "use client"
 
 import { useCartStore } from "@/store/cartStore"
+import { getStartingPrice } from "@/lib/product-utils"
+import type { CartProduct } from "@/lib/product-utils"
 
 export default function AddToCartButton({
   product,
   className = ""
 }: {
-  product: any
+  product: CartProduct
   className?: string
 }) {
   const addToCart = useCartStore((state) => state.addToCart)
@@ -16,13 +18,7 @@ export default function AddToCartButton({
     useCartStore((state) =>
       state.cart.find((c) => c._id === (product._id ?? product.slug))?.quantity
     ) ?? 0
-  const price =
-    product?.price?.ml500 ??
-    product?.price?.g100 ??
-    product?.price?.["500ml"] ??
-    product?.price?.["100g"] ??
-    product?.price ??
-    0
+  const price = getStartingPrice(product, ["ml500", "g100", "500ml", "100g"])
 
   const id = product._id ?? product.slug
 

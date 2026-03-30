@@ -1,11 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import powders from "@/data/powders.json"
-import { getProductSlug, normalizeSlug } from "@/lib/product-utils"
+import powdersData from "@/data/powders.json"
+import { getProductSlug, normalizeSlug, getStartingPrice } from "@/lib/product-utils"
+import type { CatalogItem } from "@/lib/product-utils"
 import { useCartStore } from "@/store/cartStore"
 
 export default function PowderCombo() {
+  const powders = powdersData as CatalogItem[]
   const addToCart = useCartStore((state) => state.addToCart)
   const increaseQty = useCartStore((state) => state.increaseQty)
   const decreaseQty = useCartStore((state) => state.decreaseQty)
@@ -73,13 +75,13 @@ export default function PowderCombo() {
           {combos.map((combo, i) => (
             (() => {
               const items = combo.slugs
-                .map((slug) => powders.find((p: any) => getProductSlug(p) === slug))
-                .filter(Boolean) as any[]
+                .map((slug) => powders.find((p) => getProductSlug(p) === slug))
+                .filter((item): item is CatalogItem => Boolean(item))
               const comboId = `combo-${normalizeSlug(combo.name)}`
               const comboQuantity =
                 cart.find((c) => c._id === comboId)?.quantity ?? 0
               const comboPrice = items.reduce(
-                (sum, item) => sum + (item.price?.g100 ?? item.price ?? 0),
+                (sum, item) => sum + getStartingPrice(item, ["g100"]),
                 0
               )
 

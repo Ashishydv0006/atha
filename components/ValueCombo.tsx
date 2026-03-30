@@ -1,11 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import products from "@/data/products.json"
-import { getProductSlug, normalizeSlug } from "@/lib/product-utils"
+import productsData from "@/data/products.json"
+import { getProductSlug, normalizeSlug, getStartingPrice } from "@/lib/product-utils"
+import type { CatalogItem } from "@/lib/product-utils"
 import { useCartStore } from "@/store/cartStore"
 
 export default function ValueCombo() {
+  const products = productsData as CatalogItem[]
   const addToCart = useCartStore((state) => state.addToCart)
   const increaseQty = useCartStore((state) => state.increaseQty)
   const decreaseQty = useCartStore((state) => state.decreaseQty)
@@ -82,13 +84,13 @@ export default function ValueCombo() {
           {combos.map((combo, i) => (
             (() => {
               const items = combo.slugs
-                .map((slug) => products.find((p: any) => getProductSlug(p) === slug))
-                .filter(Boolean) as any[]
+                .map((slug) => products.find((p) => getProductSlug(p) === slug))
+                .filter((item): item is CatalogItem => Boolean(item))
               const comboId = `combo-${normalizeSlug(combo.name)}`
               const comboQuantity =
                 cart.find((c) => c._id === comboId)?.quantity ?? 0
               const comboPrice = items.reduce(
-                (sum, item) => sum + (item.price?.ml500 ?? item.price ?? 0),
+                (sum, item) => sum + getStartingPrice(item, ["ml500"]),
                 0
               )
 
